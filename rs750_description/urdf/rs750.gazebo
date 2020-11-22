@@ -23,6 +23,14 @@
     <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.gazebo"/>
 
     <gazebo>
+
+        <plugin name="gazebo_p3d" filename="libgazebo_ros_p3d.so">
+            <frameName>map</frameName>
+            <bodyName>base_link</bodyName>
+            <topicName>odom</topicName>
+            <updateRate>50</updateRate>
+        </plugin>
+
         <!-- ROS control -->
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/</robotNamespace>
