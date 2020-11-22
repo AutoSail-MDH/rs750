@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:macro name="gps_link">
+        <link name="gps_link">
+            <visual>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <box size="0.031 0.026 0.005"/>
+                </geometry>
+                <material name="green" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0 0" />
+                <geometry>
+                    <box size="0.031 0.026 0.005"/>
+                </geometry>
+            </collision>
+            <xacro:solid_cuboid_inertial rpy="0 0 0" xyz="0 0 0"
+                mass="0.004" x="0.031" y="0.026" z="0.005" />
+        </link>
+
+        <gazebo>
+            <plugin name="gps_plugin" filename="libhector_gazebo_ros_gps.so">
+                <updateRate>8</updateRate>
+                <topicName>sensors/gps</topicName>
+                <velocityTopicName>sensors/gps_velocity</velocityTopicName>
+                <bodyName>gps_link</bodyName>
+                <frameId>gps_link</frameId>
+                <referenceLatitude>48.4163753</referenceLatitude>
+                <referenceLongitude>-24.511187</referenceLongitude>
+                <referenceHeading>0</referenceHeading>
+                <drift>0 0 0</drift>
+                <gaussiannoise>0 0 0</gaussiannoise>
+                <velocitydrift>0 0 0</velocitydrift>
+                <velocitygaussiannoise>0.05 0.05 0.05</velocitygaussiannoise>
+            </plugin>
+        </gazebo>
+
+    </xacro:macro>
+
+    <xacro:macro name="gps_joint" params="x y z yaw" >
+        <joint name="gps_joint" type="fixed">
+            <origin rpy="0 0 ${yaw}" xyz="${x} ${y} ${z}"/>
+            <parent link="base_link" />
+            <child link="gps_link" />
+        </joint>
+
+        <gazebo reference="gps_joint">
+            <!-- <preserveFixedJoint>true</preserveFixedJoint> -->
+        </gazebo>
+    </xacro:macro>
+
+</robot>

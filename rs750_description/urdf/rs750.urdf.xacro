@@ -31,6 +31,7 @@
     <xacro:include filename="$(find rs750_description)/urdf/rs750_anemometer.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_camera.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_imu.xacro"/>
+    <xacro:include filename="$(find rs750_description)/urdf/rs750_gps.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_magnetic.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750_rig.xacro"/>
     <xacro:include filename="$(find rs750_description)/urdf/rs750.gazebo"/>
@@ -297,6 +298,10 @@
     <!-- IMU  -->
     <xacro:imu_link />
     <xacro:imu_joint x="0.0" y="0.0" z="0.01" yaw="0" />
+
+    <!-- GPS -->
+    <xacro:gps_link />
+    <xacro:gps_joint x="0.0" y="0.0" z="0.01" yaw="0" />
 
     <!-- Magnetometer  -->
     <xacro:magnetic_link />
