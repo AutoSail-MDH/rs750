@@ -44,7 +44,7 @@
 
             <sensor type="anemometer" name="anemometer_sensor">
                 <always_on>true</always_on>
-                <update_rate>50</update_rate>
+                <update_rate>8</update_rate>
                 <visualize>true</visualize>
                 <topic>sensors/anemometer</topic>
                 <plugin filename="libgazebo_ros_anemometer.so" name="anemometer_plugin">
